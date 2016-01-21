@@ -60,9 +60,9 @@ import {pointerCoord} from '../../util/dom';
   template:
     '<ng-content select="[item-left]"></ng-content>' +
     '<div class="item-inner">' +
-      '<ion-item-content id="{{labelId}}">' +
+      '<ion-label id="{{labelId}}">' +
         '<ng-content></ng-content>' +
-      '</ion-item-content>' +
+      '</ion-label>' +
       '<div class="toggle-media" [class.toggle-activated]="isActivated" disable-activated>' +
         '<div class="toggle-icon"></div>' +
       '</div>' +

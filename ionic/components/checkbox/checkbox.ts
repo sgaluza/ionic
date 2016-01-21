@@ -35,7 +35,10 @@ import {Item} from '../item/item';
             '[attr.aria-disabled]="_disabled" ' +
             'class="item-cover" ' +
             'role="checkbox">' +
-    '</button>'
+    '</button>',
+  host: {
+    '[class.checkbox-disabled]': '_disabled'
+  }
 })
 export class Checkbox {
   private _checked: any = false;

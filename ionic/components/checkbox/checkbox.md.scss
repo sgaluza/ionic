@@ -57,7 +57,8 @@ $checkbox-md-icon-border-color-on:       map-get($colors-md, primary) !default;
   }
 }
 
-.checkbox-disabled {
+.checkbox-disabled,
+.checkbox-disabled + .item-inner {
   opacity: $checkbox-md-disabled-opacity;
   color: $checkbox-md-disabled-text-color;
 }
@@ -68,7 +69,7 @@ $checkbox-md-icon-border-color-on:       map-get($colors-md, primary) !default;
 
 
 .item ion-checkbox {
-  min-width: 56px;
+  margin: $checkbox-md-media-margin;
 }
 
 

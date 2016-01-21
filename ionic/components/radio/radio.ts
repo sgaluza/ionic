@@ -34,9 +34,9 @@ import {isDefined} from '../../util/util';
   },
   template:
     '<div class="item-inner">' +
-      '<ion-item-content id="{{labelId}}">' +
+      '<ion-label id="{{labelId}}">' +
         '<ng-content></ng-content>' +
-      '</ion-item-content>' +
+      '</ion-label>' +
       '<div class="radio-media">' +
         '<div class="radio-icon"></div>' +
       '</div>' +
