@@ -14,6 +14,9 @@ $radio-ios-disabled-text-color:    $subdued-text-ios-color !default;
 $radio-ios-disabled-opacity:       0.5 !default;
 
 
+// iOS Radio Circle: Unchecked
+// -----------------------------------------
+
 .radio-icon {
   position: relative;
   display: block;
@@ -21,9 +24,15 @@ $radio-ios-disabled-opacity:       0.5 !default;
   height: $radio-ios-icon-height;
 }
 
+// iOS Radio Label: Checked
+// -----------------------------------------
+
 .radio-checked {
   color: $radio-ios-color-on;
 }
+
+// iOS Radio Checkmark: Checked
+// -----------------------------------------
 
 .radio-checked .radio-inner {
     position: absolute;
@@ -39,6 +48,10 @@ $radio-ios-disabled-opacity:       0.5 !default;
     transform: rotate(45deg);
 }
 
+
+// iOS Radio Disabled
+// -----------------------------------------
+
 .radio-disabled {
   color: $radio-ios-disabled-text-color;
   pointer-events: none;
@@ -47,6 +60,10 @@ $radio-ios-disabled-opacity:       0.5 !default;
 .radio-disabled ion-radio {
   opacity: $radio-ios-disabled-opacity;
 }
+
+
+// iOS Radio within an item
+// -----------------------------------------
 
 .item ion-radio {
   display: block;

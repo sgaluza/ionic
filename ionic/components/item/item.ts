@@ -45,7 +45,7 @@ import {Form} from '../../util/form';
       '<ion-label cnt>' +
         '<ng-content></ng-content>'+
       '</ion-label>' +
-      '<ng-content select="[item-right],ion-radio"></ng-content>' +
+      '<ng-content select="[item-right],ion-radio,ion-toggle"></ng-content>' +
     '</div>',
   host: {
     'class': 'item'

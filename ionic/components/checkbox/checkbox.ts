@@ -5,7 +5,9 @@ import {Form} from '../../util/form';
 import {Item} from '../item/item';
 
 /**
- * The checkbox is no different than the HTML checkbox input, except it's styled differently.
+ * The checkbox is no different than the HTML checkbox input, except
+ * it's styled accordingly to the the platform and design mode, such
+ * as iOS or Material Design.
  *
  * See the [Angular 2 Docs](https://angular.io/docs/js/latest/api/core/Form-interface.html) for more info on forms and input.
  *
@@ -15,9 +17,25 @@ import {Item} from '../item/item';
  *
  * @usage
  * ```html
- * <ion-checkbox checked="true" value="isChecked" ngControl="htmlCtrl">
- *   HTML5
- * </ion-checkbox>
+ *
+ *  <ion-list>
+ *
+ *    <ion-item>
+ *      <ion-label>Pepperoni</ion-label>
+ *      <ion-checkbox value="pepperoni" checked="true"></ion-checkbox>
+ *    </ion-item>
+ *
+ *    <ion-item>
+ *      <ion-label>Sausage</ion-label>
+ *      <ion-checkbox value="sausage"></ion-checkbox>
+ *    </ion-item>
+ *
+ *    <ion-item>
+ *      <ion-label>Mushrooms</ion-label>
+ *      <ion-checkbox value="mushrooms"></ion-checkbox>
+ *    </ion-item>
+ *
+ *  </ion-list>
  * ```
  * @demo /docs/v2/demos/checkbox/
  * @see {@link /docs/v2/components#checkbox Checkbox Component Docs}
@@ -73,21 +91,21 @@ export class Checkbox {
     this.checked = !this.checked;
   }
 
-  @Input()
   get checked() {
     return this._checked;
   }
 
+  @Input()
   set checked(val) {
     this._checked = (val === true || val === 'true');
     this.onChange(this._checked);
   }
 
-  @Input()
   get disabled() {
     return this._disabled;
   }
 
+  @Input()
   set disabled(val) {
     this._disabled = (val === true || val === 'true');
   }
