@@ -1,7 +1,8 @@
-import {Component, Directive, Optional, ElementRef, Input, Renderer, HostListener} from 'angular2/core';
+import {Component, Optional, Attribute, ElementRef, Input, Renderer, HostListener} from 'angular2/core';
 import {NgControl} from 'angular2/common';
 
 import {Form} from '../../util/form';
+import {Item} from '../item/item';
 
 /**
  * The checkbox is no different than the HTML checkbox input, except it's styled differently.
@@ -23,55 +24,43 @@ import {Form} from '../../util/form';
  */
 @Component({
   selector: 'ion-checkbox',
-  host: {
-    'role': 'checkbox',
-    'class': 'item',
-    'tappable': '',
-    'tabindex': '0',
-    '[attr.aria-disabled]': 'disabled'
-  },
   template:
-    '<div class="item-inner">' +
-      '<div class="checkbox-media" disable-activated>' +
-        '<div class="checkbox-icon"></div>' +
-      '</div>' +
-      '<ion-item-content id="{{_labelId}}">' +
-        '<ng-content></ng-content>' +
-      '</ion-item-content>' +
-    '</div>'
+    '<div class="checkbox-icon" [class.checkbox-checked]="_checked" [class.checkbox-disabled]="_disabled">' +
+      '<div class="checkbox-inner"></div>' +
+    '</div>' +
+    '<button role="checkbox" ' +
+            '[id]="_id" ' +
+            '[attr.aria-checked]="_checked" ' +
+            '[attr.aria-labelledby]="_labelId" ' +
+            '[attr.aria-disabled]="_disabled" ' +
+            'class="item-cover" ' +
+            'role="checkbox">' +
+    '</button>'
 })
 export class Checkbox {
-  private _checked: boolean;
+  private _checked: any = false;
+  private _disabled: any = false;
+  private _id: string;
   private _labelId: string;
 
   @Input() value: string = '';
-  @Input() disabled: boolean = false;
-  @Input() id: string;
 
   constructor(
     private _form: Form,
     private _elementRef: ElementRef,
     private _renderer: Renderer,
-    @Optional() ngControl: NgControl
+    @Optional() private _ngControl: NgControl,
+    @Optional() private _item: Item
   ) {
     _form.register(this);
 
-    if (ngControl) {
-      ngControl.valueAccessor = this;
-    }
-  }
-
-  /**
-   * @private
-   */
-  ngOnInit() {
-    if (!this.id) {
-      this.id = 'chk-' + this._form.nextId();
-      this._renderer.setElementAttribute(this._elementRef.nativeElement, 'id', this.id);
+    if (_ngControl) {
+      _ngControl.valueAccessor = this;
     }
 
-    this._labelId = 'lbl-' + this.id;
-    this._renderer.setElementAttribute(this._elementRef.nativeElement, 'aria-labelledby', this._labelId);
+    let itemId = this._item.register('checkbox');
+    this._id = 'chk-' + itemId;
+    this._labelId = 'lbl-' + _item.id;
   }
 
   /**
@@ -83,14 +72,22 @@ export class Checkbox {
   }
 
   @Input()
-  get checked(): boolean {
-    return !!this._checked;
+  get checked() {
+    return this._checked;
   }
 
   set checked(val) {
-    this._checked = !!val;
-    this._renderer.setElementAttribute(this._elementRef.nativeElement, 'aria-checked', this._checked.toString());
+    this._checked = (val === true || val === 'true');
     this.onChange(this._checked);
+  }
+
+  @Input()
+  get disabled() {
+    return this._disabled;
+  }
+
+  set disabled(val) {
+    this._disabled = (val === true || val === 'true');
   }
 
   /**

@@ -1,7 +1,9 @@
-import {Component, ContentChildren} from 'angular2/core';
+import {Component, ContentChildren, ContentChild} from 'angular2/core';
 
 import {Button} from '../button/button';
 import {Icon} from '../icon/icon';
+import {Form} from '../../util/form';
+import {Label} from '../label/label';
 
 
 /**
@@ -48,9 +50,9 @@ import {Icon} from '../icon/icon';
 @Component({
   selector: 'ion-item,[ion-item]',
   template:
-    '<ng-content select="[item-left]"></ng-content>' +
+    '<ng-content select="[item-left],ion-checkbox"></ng-content>' +
     '<div class="item-inner">' +
-      '<ng-content select="ion-item-content,[item-content]"></ng-content>' +
+      '<ng-content select="ion-item-content,[item-content],ion-label"></ng-content>' +
       '<ion-item-content cnt>' +
         '<ng-content></ng-content>'+
       '</ion-item-content>' +
@@ -61,6 +63,23 @@ import {Icon} from '../icon/icon';
   }
 })
 export class Item {
+  private _inputs: Array<string> = [];
+  private _ids: number = -1;
+  id: string;
+
+  constructor(form: Form) {
+    this.id = form.nextId().toString();
+  }
+
+  register(type: string) {
+    this._inputs.push(type);
+    return this.id + '-' + (++this._ids);
+  }
+
+  ngAfterViewInit() {
+    console.log('inputs', this._inputs);
+    console.log('ngAfter item init')
+  }
 
   @ContentChildren(Button)
   set _buttons(buttons) {
@@ -78,3 +97,4 @@ export class Item {
     });
   }
 }
+

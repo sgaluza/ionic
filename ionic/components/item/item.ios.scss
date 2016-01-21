@@ -23,6 +23,8 @@ $item-ios-sliding-content-bg:         $list-ios-background-color !default;
 // --------------------------------------------------
 
 .item {
+  position: relative;
+
   padding-left: $item-ios-padding-left;
   font-size: $item-ios-body-text-font-size;
   border-radius: 0;

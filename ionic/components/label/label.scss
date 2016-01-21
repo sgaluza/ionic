@@ -3,12 +3,15 @@
 // Label
 // --------------------------------------------------
 
-
 ion-label {
   display: block;
-  max-width: 200px;
   font-size: inherit;
   white-space: nowrap;
+}
+
+
+ion-input ion-label {
+  max-width: 200px;
   pointer-events: none;
 }
 
