@@ -65,6 +65,7 @@ $checkbox-ios-disabled-text-color:        $subdued-text-ios-color !default;
 }
 
 .item ion-checkbox {
+  display: block;
   margin: $checkbox-ios-media-margin;
 }
 

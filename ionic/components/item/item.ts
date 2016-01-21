@@ -1,4 +1,4 @@
-import {Component, ContentChildren, ContentChild} from 'angular2/core';
+import {Component, ContentChildren, ContentChild, Renderer, ElementRef} from 'angular2/core';
 
 import {Button} from '../button/button';
 import {Icon} from '../icon/icon';
@@ -45,7 +45,7 @@ import {Form} from '../../util/form';
       '<ion-label cnt>' +
         '<ng-content></ng-content>'+
       '</ion-label>' +
-      '<ng-content select="[item-right]"></ng-content>' +
+      '<ng-content select="[item-right],ion-radio"></ng-content>' +
     '</div>',
   host: {
     'class': 'item'
@@ -56,13 +56,17 @@ export class Item {
   private _ids: number = -1;
   id: string;
 
-  constructor(form: Form) {
+  constructor(form: Form, private _renderer: Renderer, private _elementRef: ElementRef) {
     this.id = form.nextId().toString();
   }
 
   register(type: string) {
     this._inputs.push(type);
     return this.id + '-' + (++this._ids);
+  }
+
+  setCssClass(cssClass, shouldAdd: boolean) {
+    this._renderer.setElementClass(this._elementRef.nativeElement, cssClass, shouldAdd);
   }
 
   @ContentChildren(Button)

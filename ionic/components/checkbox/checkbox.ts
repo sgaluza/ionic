@@ -1,4 +1,4 @@
-import {Component, Optional, Attribute, ElementRef, Input, Renderer, HostListener} from 'angular2/core';
+import {Component, Optional, Input, HostListener} from 'angular2/core';
 import {NgControl} from 'angular2/common';
 
 import {Form} from '../../util/form';
@@ -25,16 +25,15 @@ import {Item} from '../item/item';
 @Component({
   selector: 'ion-checkbox',
   template:
-    '<div class="checkbox-icon" [class.checkbox-checked]="_checked" [class.checkbox-disabled]="_disabled">' +
+    '<div class="checkbox-icon" [class.checkbox-checked]="_checked">' +
       '<div class="checkbox-inner"></div>' +
     '</div>' +
     '<button role="checkbox" ' +
-            '[id]="_id" ' +
+            '[id]="id" ' +
             '[attr.aria-checked]="_checked" ' +
             '[attr.aria-labelledby]="_labelId" ' +
             '[attr.aria-disabled]="_disabled" ' +
-            'class="item-cover" ' +
-            'role="checkbox">' +
+            'class="item-cover">' +
     '</button>',
   host: {
     '[class.checkbox-disabled]': '_disabled'
@@ -43,17 +42,16 @@ import {Item} from '../item/item';
 export class Checkbox {
   private _checked: any = false;
   private _disabled: any = false;
-  private _id: string;
   private _labelId: string;
+
+  id: string;
 
   @Input() value: string = '';
 
   constructor(
     private _form: Form,
-    private _elementRef: ElementRef,
-    private _renderer: Renderer,
-    @Optional() private _ngControl: NgControl,
-    @Optional() private _item: Item
+    @Optional() private _item: Item,
+    @Optional() private _ngControl: NgControl
   ) {
     _form.register(this);
 
@@ -61,9 +59,10 @@ export class Checkbox {
       _ngControl.valueAccessor = this;
     }
 
-    let itemId = this._item.register('checkbox');
-    this._id = 'chk-' + itemId;
-    this._labelId = 'lbl-' + _item.id;
+    if (_item) {
+      this.id = 'chk-' + _item.register('checkbox');
+      this._labelId = 'lbl-' + _item.id;
+    }
   }
 
   /**
@@ -97,7 +96,8 @@ export class Checkbox {
    * @private
    */
   @HostListener('click', ['$event'])
-  _click(ev) {
+  private _click(ev) {
+    console.debug('checkbox, checked', this.value);
     ev.preventDefault();
     ev.stopPropagation();
     this.toggle();

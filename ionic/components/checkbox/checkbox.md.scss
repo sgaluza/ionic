@@ -41,20 +41,20 @@ $checkbox-md-icon-border-color-on:       map-get($colors-md, primary) !default;
 .checkbox-checked {
   background-color: $checkbox-md-icon-background-color-on;
   border-color: $checkbox-md-icon-border-color-on;
+}
 
-  .checkbox-inner {
-    position: absolute;
-    border-width: $checkbox-md-icon-checkmark-width;
-    border-style: $checkbox-md-icon-checkmark-style;
-    border-color: $checkbox-md-icon-checkmark-color;
-    top: 0;
-    left: 4px;
-    width: 5px;
-    height: 10px;
-    border-left: none;
-    border-top: none;
-    transform: rotate(45deg);
-  }
+.checkbox-checked .checkbox-inner {
+  position: absolute;
+  border-width: $checkbox-md-icon-checkmark-width;
+  border-style: $checkbox-md-icon-checkmark-style;
+  border-color: $checkbox-md-icon-checkmark-color;
+  top: 0;
+  left: 4px;
+  width: 5px;
+  height: 10px;
+  border-left: none;
+  border-top: none;
+  transform: rotate(45deg);
 }
 
 .checkbox-disabled,
@@ -66,7 +66,6 @@ $checkbox-md-icon-border-color-on:       map-get($colors-md, primary) !default;
 [role=checkbox][aria-disabled=true] {
   pointer-events: none;
 }
-
 
 .item ion-checkbox {
   margin: $checkbox-md-media-margin;
