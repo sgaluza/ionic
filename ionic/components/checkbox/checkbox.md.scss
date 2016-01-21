@@ -27,55 +27,6 @@ $checkbox-md-icon-border-color-off:      darken($list-md-border-color, 40%) !def
 $checkbox-md-icon-border-color-on:       map-get($colors-md, primary) !default;
 
 
-ion-checkbox {
-  cursor: pointer;
-  @include user-select-none();
-
-  &.item .item-inner {
-    border: none;
-    padding-right: 0;
-  }
-
-  ion-item-content {
-    border-bottom-width: $checkbox-md-border-bottom-width;
-    border-bottom-style: $checkbox-md-border-bottom-style;
-    border-bottom-color: $checkbox-md-border-bottom-color;
-    margin: $checkbox-md-margin;
-    padding: $checkbox-md-padding;
-  }
-
-  &[aria-checked=true] .checkbox-icon {
-    background-color: $checkbox-md-icon-background-color-on;
-    border-color: $checkbox-md-icon-border-color-on;
-  }
-
-  &[aria-checked=true] .checkbox-icon:after {
-    position: absolute;
-    border-width: $checkbox-md-icon-checkmark-width;
-    border-style: $checkbox-md-icon-checkmark-style;
-    border-color: $checkbox-md-icon-checkmark-color;
-    top: 0;
-    left: 3px;
-    width: 4px;
-    height: 8px;
-    border-left: none;
-    border-top: none;
-    content: '';
-    transform: rotate(45deg);
-  }
-
-}
-
-ion-checkbox[aria-disabled=true] {
-  opacity: $checkbox-md-disabled-opacity;
-  color: $checkbox-md-disabled-text-color;
-  pointer-events: none;
-}
-
-.checkbox-media {
-  margin: $checkbox-md-media-margin;
-}
-
 .checkbox-icon {
   position: relative;
   width: $checkbox-md-icon-size;
@@ -87,17 +38,50 @@ ion-checkbox[aria-disabled=true] {
   background-color: $checkbox-md-icon-background-color-off;
 }
 
+.checkbox-checked {
+  background-color: $checkbox-md-icon-background-color-on;
+  border-color: $checkbox-md-icon-border-color-on;
+
+  .checkbox-inner {
+    position: absolute;
+    border-width: $checkbox-md-icon-checkmark-width;
+    border-style: $checkbox-md-icon-checkmark-style;
+    border-color: $checkbox-md-icon-checkmark-color;
+    top: 0;
+    left: 4px;
+    width: 5px;
+    height: 10px;
+    border-left: none;
+    border-top: none;
+    transform: rotate(45deg);
+  }
+}
+
+.checkbox-disabled {
+  opacity: $checkbox-md-disabled-opacity;
+  color: $checkbox-md-disabled-text-color;
+}
+
+[role=checkbox][aria-disabled=true] {
+  pointer-events: none;
+}
+
+
+.item ion-checkbox {
+  min-width: 56px;
+}
+
 
 // Material Design Checkbox Color Mixin
 // --------------------------------------------------
 
 @mixin checkbox-theme-md($color-name, $bg-on) {
 
-  ion-checkbox[#{$color-name}][aria-checked=true] .checkbox-icon {
+  ion-checkbox[#{$color-name}] .checkbox-checked {
     background-color: $bg-on;
     border-color: $bg-on;
 
-    &:after {
+    .checkbox-inner {
       border-color: inverse($bg-on);
     }
   }

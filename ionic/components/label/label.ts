@@ -1,6 +1,6 @@
-import {Directive, ElementRef, Renderer, Input} from 'angular2/core';
+import {Directive, ElementRef, Renderer, Input, Optional} from 'angular2/core';
 
-import {Form} from '../../util/form';
+import {Item} from '../item/item';
 
 
 /**
@@ -24,24 +24,19 @@ import {Form} from '../../util/form';
 @Directive({
   selector: 'ion-label',
   host: {
-    '[attr.id]': 'id'
+    '[id]': 'id'
   }
 })
 export class Label {
   @Input() id: string;
 
   constructor(
-    private _form: Form,
     private _elementRef: ElementRef,
-    private _renderer: Renderer
-  ) {}
-
-  /**
-   * @private
-   */
-  ngOnInit() {
-    if (!this.id) {
-      this.id = 'lbl-' + this._form.nextId();
+    private _renderer: Renderer,
+    @Optional() _item: Item
+  ) {
+    if (_item) {
+      this.id = 'lbl-' + _item.id;
     }
   }
 

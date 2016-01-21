@@ -9,12 +9,14 @@ $label-ios-text-color:         #7f7f7f !default;
 // Default Label
 // --------------------------------------------------
 
-ion-label {
+
+
+ion-input ion-label {
   margin: $item-ios-padding-top ($item-ios-padding-right / 2) $item-ios-padding-bottom 0;
   color: $label-ios-text-color;
 }
 
-ion-label + .item-input {
+ion-input ion-label + .item-input {
   margin-left: $item-ios-padding-left;
 }
 
@@ -39,8 +41,8 @@ ion-label + .item-input {
   transform: translate3d(0, 0, 0) scale(0.8);
 }
 
-ion-label + .stacked-input,
-ion-label + .floating-input {
+ion-input ion-label + .stacked-input,
+ion-input ion-label + .floating-input {
   margin-left: 0;
 }
 
