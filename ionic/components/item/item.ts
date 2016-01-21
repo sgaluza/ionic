@@ -3,7 +3,6 @@ import {Component, ContentChildren, ContentChild} from 'angular2/core';
 import {Button} from '../button/button';
 import {Icon} from '../icon/icon';
 import {Form} from '../../util/form';
-import {Label} from '../label/label';
 
 
 /**
@@ -20,9 +19,6 @@ import {Label} from '../label/label';
  * To hide this icon, add the `detail-none` attribute to the item (eg: `<button ion-item detail-none>`). To add the icon when it is not displayed by default,
  * add the `detail-push` attribute (eg: `<ion-item detail-push>`).
  *
- * To break an item up into multiple columns, add multiple `<ion-item-content>` components inside of the item. By default,
- * this component will automatically be added inside of an `<ion-item>`, giving it a single column.
- *
  *
  * @usage
  * ```html
@@ -32,13 +28,6 @@ import {Label} from '../label/label';
  *   // default item
  *   <ion-item>
  *     {{item.title}}
- *   </ion-item>
- *
- *   // multiple item-content containers
- *   <ion-item>
- *     <ion-item-content>First Column</ion-item-content>
- *     <ion-item-content>Second Column</ion-item-content>
- *     <ion-item-content>Third Column</ion-item-content>
  *   </ion-item>
  *
  * </ion-list>
@@ -52,10 +41,10 @@ import {Label} from '../label/label';
   template:
     '<ng-content select="[item-left],ion-checkbox"></ng-content>' +
     '<div class="item-inner">' +
-      '<ng-content select="ion-item-content,[item-content],ion-label"></ng-content>' +
-      '<ion-item-content cnt>' +
+      '<ng-content select="ion-label"></ng-content>' +
+      '<ion-label cnt>' +
         '<ng-content></ng-content>'+
-      '</ion-item-content>' +
+      '</ion-label>' +
       '<ng-content select="[item-right]"></ng-content>' +
     '</div>',
   host: {
@@ -74,11 +63,6 @@ export class Item {
   register(type: string) {
     this._inputs.push(type);
     return this.id + '-' + (++this._ids);
-  }
-
-  ngAfterViewInit() {
-    console.log('inputs', this._inputs);
-    console.log('ngAfter item init')
   }
 
   @ContentChildren(Button)

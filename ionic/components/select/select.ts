@@ -100,9 +100,9 @@ import {Option} from '../option/option';
   template:
     '<ng-content select="[item-left]"></ng-content>' +
     '<div class="item-inner">' +
-      '<ion-item-content id="{{labelId}}">' +
+      '<ion-label id="{{labelId}}">' +
         '<ng-content select="ion-label"></ng-content>' +
-      '</ion-item-content>' +
+      '</ion-label>' +
       '<div class="select-text-value" item-right>{{selectedText}}</div>' +
       '<div class="select-icon" item-right></div>' +
     '</div>'
