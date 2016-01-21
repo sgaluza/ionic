@@ -6,13 +6,10 @@ import {ListHeader} from '../list/list';
 import {isDefined} from '../../util/util';
 
 
-
 /**
- * A radio group is a group of radio components.
- *
- * Selecting a radio button in the group unselects all others in the group.
- *
- * New radios can be registered dynamically.
+ * A radio group is a group of radio components, and its value comes
+ * fr0m the selected radio button's value. Selecting a radio button
+ * in the group unselects all others in the group.
  *
  * See the [Angular 2 Docs](https://angular.io/docs/js/latest/api/forms/) for more info on forms and input.
  *
@@ -24,29 +21,30 @@ import {isDefined} from '../../util/util';
  *     Auto Manufacturers
  *   </ion-list-header>
  *
- *   <ion-radio value="cord">
- *     Cord
- *   </ion-radio>
+ *   <ion-item>
+ *     <ion-label>Cord</ion-label>
+ *     <ion-radio value="cord"></ion-radio>
+ *   </ion-item>
  *
- *   <ion-radio value="duesenberg" checked="true">
- *     Duesenberg
- *   </ion-radio>
+ *   <ion-item>
+ *     <ion-label>Duesenberg</ion-label>
+ *     <ion-radio value="duesenberg" checked="true"></ion-radio>
+ *   </ion-item>
  *
- *   <ion-radio value="hudson">
- *     Hudson
- *   </ion-radio>
+ *   <ion-item>
+ *     <ion-label>Hudson</ion-label>
+ *     <ion-radio value="hudson"></ion-radio>
+ *   </ion-item>
  *
- *   <ion-radio value="packard">
- *     Packard
- *   </ion-radio>
+ *   <ion-item>
+ *     <ion-label>Packard</ion-label>
+ *     <ion-radio value="packard"></ion-radio>
+ *   </ion-item>
  *
- *   <ion-radio value="studebaker">
- *     Studebaker
- *   </ion-radio>
- *
- *   <ion-radio value="tucker">
- *     Tucker
- *   </ion-radio>
+ *   <ion-item>
+ *     <ion-label>Studebaker</ion-label>
+ *     <ion-radio value="studebaker"></ion-radio>
+ *   </ion-item>
  *
  * </ion-list>
  * ```
