@@ -104,7 +104,7 @@ export class Toggle {
     }
 
     if (_item) {
-      this.id = 'tgl-' + _item.register('toggle');
+      this.id = 'tgl-' + _item.registerInput('toggle');
       this._labelId = 'lbl-' + _item.id;
     }
   }

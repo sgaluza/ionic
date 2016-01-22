@@ -69,16 +69,16 @@ export class Checkbox {
   constructor(
     private _form: Form,
     @Optional() private _item: Item,
-    @Optional() private _ngControl: NgControl
+    @Optional() ngControl: NgControl
   ) {
     _form.register(this);
 
-    if (_ngControl) {
-      _ngControl.valueAccessor = this;
+    if (ngControl) {
+      ngControl.valueAccessor = this;
     }
 
     if (_item) {
-      this.id = 'chk-' + _item.register('checkbox');
+      this.id = 'chk-' + _item.registerInput('checkbox');
       this._labelId = 'lbl-' + _item.id;
     }
   }

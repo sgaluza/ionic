@@ -59,7 +59,7 @@ export class RadioButton {
     _form.register(this);
 
     if (_item) {
-      this.id = 'rb-' + _item.register('radio');
+      this.id = 'rb-' + _item.registerInput('radio');
       this._labelId = 'lbl-' + _item.id;
     }
 

@@ -1,8 +1,8 @@
 import {Component, ContentChildren, ContentChild, Renderer, ElementRef} from 'angular2/core';
 
 import {Button} from '../button/button';
-import {Icon} from '../icon/icon';
 import {Form} from '../../util/form';
+import {Icon} from '../icon/icon';
 
 
 /**
@@ -45,32 +45,61 @@ import {Form} from '../../util/form';
       '<ion-label cnt>' +
         '<ng-content></ng-content>'+
       '</ion-label>' +
-      '<ng-content select="[item-right],ion-radio,ion-toggle"></ng-content>' +
+      '<ng-content select="[item-right],ion-radio,ion-toggle,ion-select"></ng-content>' +
     '</div>',
   host: {
     'class': 'item'
   }
 })
 export class Item {
-  private _inputs: Array<string> = [];
   private _ids: number = -1;
+  private _inputs: Array<string> = [];
+
   id: string;
 
   constructor(form: Form, private _renderer: Renderer, private _elementRef: ElementRef) {
     this.id = form.nextId().toString();
   }
 
-  register(type: string) {
+  /**
+   * @private
+   */
+  registerInput(type: string) {
     this._inputs.push(type);
     return this.id + '-' + (++this._ids);
   }
 
+  /**
+   * @private
+   */
+  ngAfterContentInit() {
+    if (this._inputs.length > 1) {
+      this._renderer.setElementClass(this._elementRef.nativeElement, 'item-multiple-inputs', true);
+    }
+  }
+
+  /**
+   * @private
+   */
   setCssClass(cssClass, shouldAdd: boolean) {
     this._renderer.setElementClass(this._elementRef.nativeElement, cssClass, shouldAdd);
   }
 
+  /**
+   * @private
+   */
+  getLabelText(): string {
+    let labelEle: HTMLElement = this._elementRef.nativeElement.querySelector('ion-label');
+    if (labelEle) {
+      return labelEle.textContent;
+    }
+  }
+
+  /**
+   * @private
+   */
   @ContentChildren(Button)
-  set _buttons(buttons) {
+  private set _buttons(buttons) {
     buttons.toArray().forEach(button => {
       if (!button.isItem) {
         button.addClass('item-button');
@@ -78,8 +107,11 @@ export class Item {
     });
   }
 
+  /**
+   * @private
+   */
   @ContentChildren(Icon)
-  set _icons(icons) {
+  private set _icons(icons) {
     icons.toArray().forEach(icon => {
       icon.addClass('item-icon');
     });
