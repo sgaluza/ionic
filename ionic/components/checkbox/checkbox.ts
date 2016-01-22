@@ -91,23 +91,27 @@ export class Checkbox {
     this.checked = !this.checked;
   }
 
+  @Input()
   get checked() {
     return this._checked;
   }
 
-  @Input()
   set checked(val) {
-    this._checked = (val === true || val === 'true');
-    this.onChange(this._checked);
+    if (!this._disabled) {
+      this._checked = (val === true || val === 'true');
+      this.onChange(this._checked);
+      this._item && this._item.setCssClass('item-checkbox-checked', this._checked);
+    }
   }
 
+  @Input()
   get disabled() {
     return this._disabled;
   }
 
-  @Input()
   set disabled(val) {
     this._disabled = (val === true || val === 'true');
+    this._item && this._item.setCssClass('item-checkbox-disabled', this._disabled);
   }
 
   /**

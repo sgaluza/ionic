@@ -26,7 +26,6 @@ $toggle-ios-media-padding:             6px ($item-ios-padding-right / 2) 5px ($i
 $toggle-ios-transition-duration:       300ms !default;
 
 $toggle-ios-disabled-opacity:          0.5 !default;
-$toggle-ios-disabled-text-color:       $subdued-text-ios-color !default;
 
 
 // iOS Toggle
@@ -142,20 +141,17 @@ ion-toggle {
 }
 
 
-// iOS Toggle Disabled
+// iOS Toggle: Disabled
 // -----------------------------------------
 
-.toggle-disabled {
-  color: $toggle-ios-disabled-text-color;
+.toggle-disabled,
+.item-toggle-disabled ion-label {
+  opacity: $toggle-ios-disabled-opacity;
   pointer-events: none;
 }
 
-.toggle-disabled ion-radio {
-  opacity: $toggle-ios-disabled-opacity;
-}
 
-
-// iOS Toggle within an item
+// iOS Toggle Within An Item
 // -----------------------------------------
 
 .item ion-toggle {
@@ -167,10 +163,10 @@ ion-toggle {
 // iOS Toggle Color Mixin
 // --------------------------------------------------
 
-@mixin ios-toggle-theme($color-name, $bg-on) {
+@mixin ios-toggle-theme($color-name, $color-value) {
 
   ion-toggle[#{$color-name}] .toggle-checked {
-    background-color: $bg-on;
+    background-color: $color-value;
   }
 
 }
@@ -179,6 +175,8 @@ ion-toggle {
 // Generate iOS Toggle Colors
 // --------------------------------------------------
 
-@each $color-name, $value in $colors-ios {
-  @include ios-toggle-theme($color-name, $value);
+@each $color-name, $color-value in $colors-ios {
+
+  @include ios-toggle-theme($color-name, $color-value);
+
 }

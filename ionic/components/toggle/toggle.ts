@@ -70,7 +70,7 @@ import {pointerCoord} from '../../util/dom';
   }
 })
 export class Toggle {
-  private _checked: boolean;
+  private _checked: any = false;
   private _disabled: any = false;
   private _labelId: string;
   private _activated: boolean = false;
@@ -117,15 +117,27 @@ export class Toggle {
     this.checked = !this.checked;
   }
 
-  get checked(): boolean {
-    return !!this._checked;
+  @Input()
+  get checked() {
+    return this._checked;
+  }
+
+  set checked(val) {
+    if (!this._disabled) {
+      this._checked = (val === true || val === 'true');
+      this.onChange(this._checked);
+      this._item && this._item.setCssClass('item-toggle-checked', this._checked);
+    }
   }
 
   @Input()
-  set checked(val: boolean) {
-    this._checked = !!val;
-    this._renderer.setElementAttribute(this._elementRef.nativeElement, 'aria-checked', this._checked.toString());
-    this.onChange(this._checked);
+  get disabled() {
+    return this._disabled;
+  }
+
+  set disabled(val) {
+    this._disabled = (val === true || val === 'true');
+    this._item && this._item.setCssClass('item-toggle-disabled', this._disabled);
   }
 
   /**

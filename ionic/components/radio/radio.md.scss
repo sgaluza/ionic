@@ -15,9 +15,11 @@ $radio-md-icon-border-radius:     50% !default;
 $radio-md-transition-duration:    280ms !default;
 $radio-md-transition-easing:      cubic-bezier(.4, 0, .2, 1) !default;
 
-$radio-md-disabled-text-color:    $subdued-text-md-color !default;
 $radio-md-disabled-opacity:       0.5 !default;
 
+
+// Material Design Radio Outer Circle: Unchecked
+// -----------------------------------------
 
 .radio-icon {
   position: relative;
@@ -33,6 +35,10 @@ $radio-md-disabled-opacity:       0.5 !default;
   border-radius: $radio-md-icon-border-radius;
 }
 
+
+// Material Design Radio Inner Circle: Unchecked
+// -----------------------------------------
+
 .radio-inner  {
   position: absolute;
   top: $radio-md-icon-border-width;
@@ -45,30 +51,47 @@ $radio-md-disabled-opacity:       0.5 !default;
   transform: scale3d(0, 0, 0);
 }
 
-.radio-checked {
-  color: $radio-md-color-on;
-}
 
-.radio-checked.radio-icon {
+// Material Design Radio Outer Circle: Checked
+// -----------------------------------------
+
+.radio-checked {
   border-color: $radio-md-color-on;
 }
+
+
+// Material Design Radio Inner Circle: Checked
+// -----------------------------------------
 
 .radio-checked .radio-inner {
   transform: scale3d(1, 1, 1);
 }
 
-.radio-disabled {
-  color: $radio-md-disabled-text-color;
+
+// Material Design Radio: Disabled
+// -----------------------------------------
+
+.radio-disabled,
+.item-radio-disabled ion-label {
+  opacity: $radio-md-disabled-opacity;
   pointer-events: none;
 }
 
-.radio-disabled ion-radio {
-  opacity: $radio-md-disabled-opacity;
-}
+
+// Material Design Radio Within An Item
+// -----------------------------------------
 
 .item ion-radio {
   display: block;
   margin: $item-md-padding-media-top ($item-md-padding-right / 2) $item-md-padding-media-bottom ($item-md-padding-left / 2);
+}
+
+
+// Material Design Radio Item Label: Checked
+// -----------------------------------------
+
+.item-radio-checked ion-label {
+  color: $radio-md-color-on;
 }
 
 
@@ -77,18 +100,11 @@ $radio-md-disabled-opacity:       0.5 !default;
 
 @mixin radio-theme-md($color-name, $color-value) {
 
-  ion-radio[#{$color-name}] {
+  ion-radio[#{$color-name}] .radio-checked {
+    border-color: $color-value;
 
-    &[aria-checked=true] {
-      color: $color-value;
-    }
-
-    &[aria-checked=true] .radio-icon {
-      border-color: $color-value;
-
-      &:after {
-        background-color: $color-value;
-      }
+    .radio-icon {
+      background-color: $color-value;
     }
 
   }

@@ -23,7 +23,6 @@ $toggle-md-media-padding:                12px ($item-md-padding-right / 2) 12px 
 $toggle-md-transition-duration:          300ms !default;
 
 $toggle-md-disabled-opacity:             0.5 !default;
-$toggle-md-disabled-text-color:          $subdued-text-md-color !default;
 
 
 // Material Design Toggle
@@ -88,20 +87,17 @@ ion-toggle {
 }
 
 
-// Material Design Toggle Disabled
+// Material Design Toggle: Disabled
 // -----------------------------------------
 
-.toggle-disabled {
-  color: $toggle-md-disabled-text-color;
+.toggle-disabled,
+.item-toggle-disabled ion-label {
+  opacity: $toggle-md-disabled-opacity;
   pointer-events: none;
 }
 
-.toggle-disabled ion-radio {
-  opacity: $toggle-md-disabled-opacity;
-}
 
-
-// Material Design Toggle within an item
+// Material Design Toggle Within An Item
 // -----------------------------------------
 
 .item ion-toggle {
@@ -114,16 +110,16 @@ ion-toggle {
 // Material Design Color Mixin
 // --------------------------------------------------
 
-@mixin toggle-theme-md($color-name, $bg-on) {
+@mixin toggle-theme-md($color-name, $color-value) {
 
   ion-toggle[#{$color-name}] {
 
     .toggle-checked {
-      background-color: lighten($bg-on, 25%);
+      background-color: lighten($color-value, 25%);
     }
 
     .toggle-checked .toggle-inner {
-      background-color: $bg-on;
+      background-color: $color-value;
     }
 
   }
@@ -134,8 +130,8 @@ ion-toggle {
 // Generate Material Design Toggle Auxiliary Colors
 // --------------------------------------------------
 
-@each $color-name, $value in $colors-md {
+@each $color-name, $color-value in $colors-md {
 
-  @include toggle-theme-md($color-name, $value);
+  @include toggle-theme-md($color-name, $color-value);
 
 }

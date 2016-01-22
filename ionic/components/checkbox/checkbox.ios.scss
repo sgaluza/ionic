@@ -1,8 +1,7 @@
 @import "../../globals.ios";
 
-// iOS Checkbox Structure
+// iOS Checkbox
 // --------------------------------------------------
-
 
 $checkbox-ios-background-color-off:       $list-ios-background-color !default;
 $checkbox-ios-background-color-on:        map-get($colors-ios, primary) !default;
@@ -21,10 +20,9 @@ $checkbox-ios-icon-checkmark-color:       $background-ios-color !default;
 $checkbox-ios-media-margin:               $item-ios-padding-media-top $item-ios-padding-right $item-ios-padding-media-bottom 2px !default;
 
 $checkbox-ios-disabled-opacity:           0.5 !default;
-$checkbox-ios-disabled-text-color:        $subdued-text-ios-color !default;
 
 
-// iOS Checkbox Circle: Unchecked
+// iOS Checkbox Outer Circle: Unchecked
 // -----------------------------------------
 
 .checkbox-icon {
@@ -39,7 +37,7 @@ $checkbox-ios-disabled-text-color:        $subdued-text-ios-color !default;
 }
 
 
-// iOS Checkbox Circle: Checked
+// iOS Checkbox Outer Circle: Checked
 // -----------------------------------------
 
 .checkbox-checked {
@@ -48,7 +46,7 @@ $checkbox-ios-disabled-text-color:        $subdued-text-ios-color !default;
 }
 
 
-// iOS Checkbox Checkmark: Checked
+// iOS Checkbox Inner Checkmark: Checked
 // -----------------------------------------
 
 .checkbox-checked .checkbox-inner {
@@ -70,17 +68,13 @@ $checkbox-ios-disabled-text-color:        $subdued-text-ios-color !default;
 // -----------------------------------------
 
 .checkbox-disabled,
-.checkbox-disabled + .item-inner {
+.item-checkbox-disabled ion-label {
   opacity: $checkbox-ios-disabled-opacity;
-  color: $checkbox-ios-disabled-text-color;
-}
-
-[role=checkbox][aria-disabled=true] {
   pointer-events: none;
 }
 
 
-// iOS Checkbox within an item
+// iOS Checkbox Within An Item
 // -----------------------------------------
 
 .item ion-checkbox {

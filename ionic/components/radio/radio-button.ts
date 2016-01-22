@@ -78,8 +78,11 @@ export class RadioButton {
   }
 
   set checked(val) {
-    this._checked = (val === true || val === 'true');
-    this.select.emit(this);
+    if (!this._disabled) {
+      this._checked = (val === true || val === 'true');
+      this.select.emit(this);
+      this._item && this._item.setCssClass('item-radio-checked', this._checked);
+    }
   }
 
   @Input()
@@ -89,7 +92,7 @@ export class RadioButton {
 
   set disabled(val) {
     this._disabled = (val === true || val === 'true');
-    this._item && this._item.setCssClass('radio-disabled', val);
+    this._item && this._item.setCssClass('item-radio-disabled', this._disabled);
   }
 
   /**
@@ -97,7 +100,7 @@ export class RadioButton {
    */
   setChecked(val: boolean) {
     this._checked = val;
-    this._item && this._item.setCssClass('radio-checked', val);
+    this._item && this._item.setCssClass('item-radio-checked', val);
   }
 
   /**
@@ -105,7 +108,7 @@ export class RadioButton {
    */
   @HostListener('click', ['$event'])
   private _click(ev) {
-    console.debug('RadioButton, select', this.value);
+    console.debug('radio, select', this.value);
     ev.preventDefault();
     ev.stopPropagation();
     this.toggle();
