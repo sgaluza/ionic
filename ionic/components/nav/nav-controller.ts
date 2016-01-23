@@ -149,7 +149,7 @@ export class NavController extends Ion {
    * Set the root for the current navigation stack
    * @param {Type} page  The name of the component you want to push on the navigation stack
    * @param {object} [params={}] Any nav-params you want to pass along to the next view
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    * @returns {Promise} Returns a promise when done
    */
   setRoot(page: Type, params: any = {}, opts: any = {}): Promise<any> {
@@ -319,7 +319,7 @@ export class NavController extends Ion {
    *
    * We'll look at how we can access that data in the `SecondView` in the navParam docs
    *
-   * We can also pass any options to the transtion from that same method
+   * We can also pass any options to the transition from that same method
    *
    * ```typescript
    * class MyClass{
@@ -344,7 +344,7 @@ export class NavController extends Ion {
    * ```
    * @param {Type} page  The page component class you want to push on to the navigation stack
    * @param {object} [params={}] Any nav-params you want to pass along to the next view
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    * @returns {Promise} Returns a promise, which resolves when the transition has completed
    */
   push(page: Type,
@@ -380,7 +380,7 @@ export class NavController extends Ion {
    * ```
    *
    * @param {ViewController} enteringView The name of the component you want to push on the navigation stack
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    * @returns {Promise} Returns a promise, which resolves when the transition has completed
    */
   present(enteringView: ViewController, opts: any = {}): Promise<any> {
@@ -432,7 +432,7 @@ export class NavController extends Ion {
    * @param {number} insertIndex  The index where you want to insert the page
    * @param {Type} page  The name of the component you want to insert into the nav stack
    * @param {object} [params={}] Any nav-params you want to pass along to the next page
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    * @returns {Promise} Returns a promise when the page has been inserted into the navigation stack
    */
   insert(insertIndex: number, page: Type, params: any = {}, opts: any = {}): Promise<any> {
@@ -464,7 +464,7 @@ export class NavController extends Ion {
    *
    * @param {number} insertIndex  The index where you want to insert the page
    * @param {Array<{page: Type, params=: any}>} insertPages  An array of objects, each with a `page` and optionally `params` property
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    * @returns {Promise} Returns a promise when the pages have been inserted into the navigation stack
    */
   insertPages(insertIndex: number, insertPages: Array<{page: Type, params?: any}>, opts: any = {}): Promise<any> {
@@ -594,7 +594,7 @@ export class NavController extends Ion {
    * }
    * ```
    *
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    * @returns {Promise} Returns a promise when the transition is completed
    */
   pop(opts: any = {}): Promise<any> {
@@ -608,7 +608,7 @@ export class NavController extends Ion {
 
   /**
    * Similar to `pop()`, this method let's you navigate back to the root of the stack, no matter how many views that is
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    */
   popToRoot(opts = {}): Promise<any> {
     return this.popTo(this.first(), opts);
@@ -617,7 +617,7 @@ export class NavController extends Ion {
   /**
    * Pop to a specific view in the history stack
    * @param {ViewController} view  to pop to
-   * @param {object} [opts={}]  Any options you want to use pass to transtion
+   * @param {object} [opts={}]  Any options you want to use pass to transition
    */
   popTo(view: ViewController, opts: any = {}): Promise<any> {
     let startIndex = this.indexOf(view);
@@ -645,7 +645,7 @@ export class NavController extends Ion {
    *
    * @param {number} startIndex  The starting index to remove views from the nav stack
    * @param {removeCount} [opts={}]  The number of views to remove, defaults to remove `1`.
-   * @param {object} [opts={}] Any options you want to use pass to transtion
+   * @param {object} [opts={}] Any options you want to use pass to transition
    * @returns {Promise} Returns a promise when the view has been removed
    */
   remove(startIndex: number, removeCount: number = 1, opts: any = {}): Promise<any> {
